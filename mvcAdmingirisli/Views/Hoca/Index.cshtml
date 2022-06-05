@@ -1,0 +1,48 @@
+﻿
+@model IEnumerable<mvcAdmingirisli.Models.Hocalar>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2 class="text-center">HOCALAR</h2>
+
+<p>
+    @Html.ActionLink("EKLE", "Yeni", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unvan)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unvan)
+        </td>
+        <td>
+        
+            @Html.ActionLink("YENİLE", "Yenile", new { id = item.HocaNo }, new { @class = "btn btn-primary" }) |
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.HocaNo }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten silmek istiyor musunuz?')" })
+        </td>
+    </tr>
+}
+
+</table>

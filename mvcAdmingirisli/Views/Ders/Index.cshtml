@@ -1,0 +1,48 @@
+﻿@model IEnumerable<mvcAdmingirisli.Models.Dersler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    @Html.ActionLink("EKLE", "Yeni", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DersAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kredi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hocalar.Ad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.DersAdi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kredi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Hocalar.Ad)
+    </td>
+    <td>
+
+        @Html.ActionLink("YENİLE", "Yenile", new { id = item.DersNo }, new { @class = "btn btn-primary" }) 
+    @*<td><a href=""Delete",  new { id = item.DersNo } class="btn btn-danger">SİL</a></td>*@
+    @Html.ActionLink("Delete", "Delete", new { id = item.DersNo }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten silmek istiyor musunuz?')" })
+    </td>
+</tr>
+}
+
+</table>
